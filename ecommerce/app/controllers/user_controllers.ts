@@ -1,54 +1,48 @@
-import type { HttpContext } from '@adonisjs/core/http'
+import  { HttpContext } from '@adonisjs/core/http'
+import User from "../models/user.js"
 
-let sequence = 2
 
-const users = [
-  {
-    id: 1,
-    name: 'John Doe',
-    email: 'doe@gmail.com',
-  },
-  {
-    id: 2,
-    name: 'John Doe',
-    email: 'doe@gmail.com',
-  },
-]
 
 export default class UsersController {
-  index() {
+  async index({ request }: HttpContext) {
+
+    const page = request.input('page', 1)
+    const payload = request.only(['name'])
+    const query = User.query()
+
+    if (payload.name && payload.name.length > 0) {
+      query.where('name', 'like', `%${payload.name}%`)
+    }
+    const users = await query.paginate(page)
+
+    
+
     return users
+
   }
 
-  create({ request, response }: HttpContext) {
-    const user = request.only(['name', 'email'])
+  async create({ request }: HttpContext) {
+    const payload = request.only(['full_name', 'email','password'])
+    const user = await User.create(payload)
 
-    sequence += 1
 
-    users.push({
-      id: sequence,
-      ...user,
-    })
-
-    return response.redirect().toRoute('users.show', { id: sequence })
+    //return response.redirect().toRoute('users.show', { id: sequence })
+    return user
   }
 
-  show({ params, response }: HttpContext) {
+  async show({ params }: HttpContext) {
     const id = params.id
 
     if (id === null) {
-      response.status(400)
 
       return { message: 'id eh obrigatorio' }
     }
+    const user = await User.findByOrFail(params.id)
 
-    for (const user of users) {
-      if (user.id === id) {
-        return user
-      }
+    if(user !== null){
+      return user
     }
 
-    response.status(404)
 
     return { message: 'not found' }
   }
