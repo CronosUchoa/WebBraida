@@ -15,8 +15,9 @@ const ProductsController = () => import('../app/controllers/products_controller.
 router
   .group(() => {
     router.get('/', [UsersController, 'index']).as('user.index')
-    router.get('/:id', [UsersController, 'show']).where('id', router.matchers.number()).as('show')
+    router.patch('/:id', [UsersController, 'update']).as('update')
     router.post('/', [UsersController, 'create']).as('create')
+    router.delete('/:id', [UsersController, 'delete']).as('delete')
   })
   .prefix('users')
   .as('users')

@@ -1,5 +1,6 @@
 import  { HttpContext } from '@adonisjs/core/http'
 import User from "../models/user.js"
+import Product from '#models/product'
 
 
 
@@ -15,7 +16,7 @@ export default class UsersController {
     }
     const users = await query.paginate(page)
 
-    
+
 
     return users
 
@@ -30,20 +31,21 @@ export default class UsersController {
     return user
   }
 
-  async show({ params }: HttpContext) {
-    const id = params.id
+  async update({ params, request }: HttpContext) {
+    console.log(params.id)
+    const user = await User.findOrFail(params.id)
+    const payload = await request.only(['full_name','email','password'])
+    user.merge(payload)
+    await user.save()
 
-    if (id === null) {
+    return user
 
-      return { message: 'id eh obrigatorio' }
-    }
-    const user = await User.findByOrFail(params.id)
+  }
 
-    if(user !== null){
-      return user
-    }
+  async delete({params }: HttpContext ) {
+    const user = await User.findOrFail(params.id)
+    await user.delete()
+    return { sucess: `${params.id} removido`}
 
-
-    return { message: 'not found' }
   }
 }
