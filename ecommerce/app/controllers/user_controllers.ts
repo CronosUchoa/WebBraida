@@ -1,6 +1,5 @@
 import  { HttpContext } from '@adonisjs/core/http'
 import User from "../models/user.js"
-import Product from '#models/product'
 
 
 
@@ -16,19 +15,17 @@ export default class UsersController {
     }
     const users = await query.paginate(page)
 
-
-
-    return users
+    return { sucess: `usando index`}
 
   }
 
-  async create({ request }: HttpContext) {
+  async create({ request,view }: HttpContext) {
     const payload = request.only(['full_name', 'email','password'])
-    const user = await User.create(payload)
+    await User.create(payload)
 
 
     //return response.redirect().toRoute('users.show', { id: sequence })
-    return user
+    return view.render('pages/products/index')
   }
 
   async update({ params, request }: HttpContext) {
