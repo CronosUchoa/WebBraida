@@ -19,11 +19,13 @@ export default class UsersController {
 
   }
 
+  async newUser({view}: HttpContext){
+    return view.render('pages/users/create')
+  }
+
   async create({ request,view }: HttpContext) {
     const payload = request.only(['full_name', 'email','password'])
     await User.create(payload)
-
-
     //return response.redirect().toRoute('users.show', { id: sequence })
     return view.render('pages/products/index')
   }
