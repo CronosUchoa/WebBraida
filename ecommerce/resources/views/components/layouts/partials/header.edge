@@ -1,6 +1,22 @@
-<nav>
-  <a href="{{ route('products.index') }}">Produtos</a>
-  <a href="{{ route('products.create') }}">Criar Produto</a>
-  <a href="{{ route('users.newUser') }}"> Criar Conta</a>
-</nav>
-
+<header>
+  <div class="logo">
+      <h1><a href="#">Green Game</a></h1>
+  </div>
+  <nav id="meuMenu">
+    <ul>
+      <li><a href="{{ route('products.index') }}">Games</a></li>
+      @if(auth.user && auth.user.hasSubscription)
+          <li><a href="{{ route('products.create') }}">Criar Produto</a></li>
+      @else
+          <li><a href="#">Promoções</a></li>
+          <li><a href="#">Carrinho</a></li>
+          <li>
+            <a href="#">Entrar</a>
+            <ul>
+              <li><a href="{{ route('users.newUser') }}">Criar Conta</a></li>
+            </ul>
+          </li>
+      @endif
+    </ul>
+  </nav>
+</header>

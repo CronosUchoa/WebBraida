@@ -1,10 +1,186 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
-html,
-body {
+html, body {
   height: 100%;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  background-color: #0a3740;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  position: fixed;  /* Fixa o header no topo */
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+header .logo h1 a {
+  font-size: 2rem;
+  display: flex;
+  justify-content: left;
+  text-decoration: none;
+  color: #fff;
+}
+
+
+header nav ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+header nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+main {
+  flex: 1;  /* O conteúdo principal ocupa o restante do espaço */
+  padding-top: 100px; /* Compensa a altura do header fixo */
+}
+
+.banner {
+  background-image: url('banner.jpg');
+  background-size: cover;
+  color: rgb(19, 16, 16);
+  text-align: center;
+  padding: 100px 20px;
+}
+
+.banner h2 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+.banner p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.banner .btn {
+  background-color: #ff4757;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.products {
+  padding: 40px;
+  text-align: center;
+}
+
+.products h2 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+}
+
+.product-list {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.product-item {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 200px;
+}
+
+.product-item img {
+  max-width: 100%;
+  border-radius: 10px;
+}
+
+.product-item h3 {
+  margin: 10px 0;
+  font-size: 1.2rem;
+}
+
+.product-item p {
+  color: #ff4757;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.product-item button {
+  background-color: #ff4757;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#meuMenu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#meuMenu ul li {
+  position: relative;
+}
+
+#meuMenu ul li a {
+  display: block;
+  padding: 10px 15px;
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+#meuMenu ul li a:hover {
+  color: #021f12;
+  text-shadow: 1px 1px 2px rgb(14, 253, 5); /* Sombra mais forte no hover */
+}
+
+/* Escondendo as listas internas inicialmente */
+#meuMenu ul ul {
+  display: none;
+  position: absolute;
+  top: 100%; /* Alinha abaixo do item pai */
+  left: 0;
+  min-width: 150px;
+}
+
+/* Mostrar a lista interna ao passar o mouse */
+#meuMenu ul li:hover > ul {
+  display: block;
+  background-color: #0a3740;;
+}
+
+/* Ajuste nos links das listas internas */
+#meuMenu ul ul li a {
+  padding: 10px;
+}
+
+footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+  position: relative;
+  bottom: 0;
   width: 100%;
 }
+  
