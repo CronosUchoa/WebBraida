@@ -174,7 +174,7 @@ main {
 }
 
 footer {
-  background-color: #333;
+  background-color: #0a3740;
   color: white;
   text-align: center;
   padding: 20px;
@@ -183,4 +183,7 @@ footer {
   bottom: 0;
   width: 100%;
 }
-  
+
+main{
+  text-align: center;
+}

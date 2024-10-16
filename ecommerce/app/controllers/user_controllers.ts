@@ -29,6 +29,7 @@ export default class UsersController {
     //return response.redirect().toRoute('users.show', { id: sequence })
     return view.render('pages/products/index')
   }
+  
 
   async update({ params, request }: HttpContext) {
     console.log(params.id)

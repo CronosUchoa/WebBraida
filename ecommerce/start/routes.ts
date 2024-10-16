@@ -27,7 +27,7 @@ router
     router.patch('/:id', [UsersController, 'update']).as('update')
     router.post('/', [UsersController, 'create']).as('create')
     router.delete('/:id', [UsersController, 'delete']).as('delete')
-    router.get('/new',[UsersController, 'newUser']).as('newUser')
+    router.get('/new', [UsersController, 'newUser']).as('newUser')
   })
   .prefix('users')
   .as('users')
